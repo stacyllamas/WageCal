@@ -30,10 +30,12 @@ class CalculatorViewController: UIViewController {
         //Input validation for name and hours text fields
         guard let name = nameTextField.text, !name.isEmpty else {
             messageLabel.text = "Please enter a valid name!"
+            messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
             return
         }
         guard let hoursText = hoursTextField.text, let hoursWorked = Double(hoursText), hoursWorked >= 0, hoursWorked <= 100 else {
             messageLabel.text = "Please enter a valid number of hours! (0-100)"
+            messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
             return
         }
         //let used because the rate is constant (Base Hourly Rate)
@@ -43,8 +45,8 @@ class CalculatorViewController: UIViewController {
                                  hourlyRate: hourlyRate,
                                  isAppleCertified: statusSwitch.isOn)
         //Multi-line UILabel display using currency style format
-        messageLabel.text = "Thank you, \(name), for using the mobile wage calculator! Your weekly salary is - \(wage.formatted(.currency(code: "USD")))."
-        messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        messageLabel.text = "Thank you, \(name), for using the mobile wage calculator! Your weekly salary is: \(wage.formatted(.currency(code: "USD")))."
+        messageLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
     }
     //Custom function that returns final calculated weekly wage - Includes all logic and is called inside the button function
     func CalculateWage(hoursWorked: Double,
